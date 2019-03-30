@@ -1,3 +1,16 @@
+body {
+    background-color: rgb(87, 82, 82);
+}
 .navbar {
     font-family: 'Michroma', sans-serif;
 }
+
+.row {
+    font-family: 'Michroma', sans-serif;
+}
+
+.card-body {
+    background-color: rgb(86, 86, 88);
+    color: aliceblue;
+}
+
