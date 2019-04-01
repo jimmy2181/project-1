@@ -25,5 +25,5 @@ $.ajax({
                 // Do other things.
              },
     error: function(xhr, status, err) {
-                // This time, we do not end up here!
+      }  // This time, we do not end up here!
              });
