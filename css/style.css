@@ -1,8 +1,14 @@
 body {
-    background-color: rgb(87, 82, 82);
+    background-color: rgb(87, 82, 82) !important;
 }
+
 .navbar {
     font-family: 'Michroma', sans-serif;
+}
+
+.btn.btn-light {
+    background-color: purple;
+    color:aliceblue;
 }
 
 .row {
