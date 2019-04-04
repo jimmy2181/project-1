@@ -16,38 +16,89 @@
 // $("#display").text("<>");
 
 // API responeses for ticketmaster here
-
-var APIkey = "CWfDrt0hTbUSexgXRIfEm2GAuiAA2NSv";
+var APIkeyTicket = "CWfDrt0hTbUSexgXRIfEm2GAuiAA2NSv";
 var queryURLTicketEvents =
-  "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" + APIkey;
+  "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" +
+  APIkeyTicket;
+var queryURLTicketSearch =
+  "https://app.ticketmaster.com/discovery/v2/classifications.json?apikey=" +
+  APIkeyTicket;
+// Napster API variables
 var APIkeyNapster =
-  "http://api.napster.com/v2.2/artists/art.978?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=5&pretty=true";
+  "YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=5&pretty=true";
+var queryURLNapster =
+  "http://api.napster.com/v2.2/artists/art.978?apikey=" + APIkeyNapster;
 
-$.ajax({
-  url: queryURLTicketEvents,
-  method: "GET"
-}).then(function(response) {
-  console.log(queryURLTicketEvents);
-  console.log(response);
-});
-
-console.log(APIkeyNapster);
-
-// Here we grab the text from the input box
-var city = $("#form-control mr-sm-2").val();
-
-$.ajax({
-  url: queryURLTicketEvents,
-  method: "GET"
-}).then(function(response) {
-  console.log(response);
-  // Looping over first 3 results item from events
-  for (var i = 0; i < 3; i++) {
+// this is the function used to display the data for the cards on the homepage
+function displayHomepage() {
+  $.ajax({
+    url: queryURLTicketEvents,
+    method: "GET"
+  }).then(function(response) {
+    console.log(queryURLTicketEvents);
+    console.log(response);
     $(".list-unstyled").append(
-      $("<li>").text(response._embedded.events[i].name)
+      $(`<li class="media">
+        <img
+          src=${response._embedded.events[0].images[0].url}
+          class="mr-3"
+          alt="img"
+        />
+        <a href=${response._embedded.events[0].url}>${
+        response._embedded.events[0].name
+      }</a>
+      </li>`)
     );
-  }
-});
+    $(".list-unstyled").append(
+      $(`<li class="media">
+        <img
+          src=${response._embedded.events[1].images[0].url}
+          class="mr-3"
+          alt="img"
+        />
+        <a href=${response._embedded.event[1].url}>${
+        response._embedded.events[1].name
+      }</a>
+      </li>`)
+    );
+    $(".list-unstyled").append;
+    $(`<li class="media">
+        <img
+          src=${response._embedded.events[2].images[0].url}
+          class="mr-3"
+          alt="img"
+        />
+        <a href=${
+          response._embedded.events[2].url
+        }>${response._embedded.events[2].name}</a>
+      </li>`);
+  });
+}
 
-// Here we grab the text from the input box
-var city = $("#form-control mr-sm-2").val();
+displayHomepage();
+
+// This is the API call for the searchable data
+function searchResults() {
+  $.ajax({
+    url: queryURLTicketSearch,
+    method: "GET"
+  }).then(function(response) {
+    console.log(queryURLTicketSearch);
+    console.log(response);
+    // Here we grab the text from the input box
+  });
+}
+
+searchResults();
+// This is the data for the corresponing music that matches the search results
+function napsterMusic() {
+  $.ajax({
+    url: queryURLNapster,
+    method: "GET"
+  }).then(function(response) {
+    console.log(queryURLNapster);
+    console.log(response);
+  });
+}
+
+napsterMusic();
