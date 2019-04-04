@@ -36,7 +36,8 @@ function displayHomepage() {
     method: "GET"
   }).then(function(response) {
     console.log(queryURLTicketEvents);
-    console.log(response);
+    console.log(response._embedded.events);
+
     $(".list-unstyled").append(
       $(`<li class="media">
         <img
@@ -47,8 +48,10 @@ function displayHomepage() {
         <a href=${response._embedded.events[0].url}>${
         response._embedded.events[0].name
       }</a>
-      </li>`)
+      </li>
+      <br>`)
     );
+    
     $(".list-unstyled").append(
       $(`<li class="media">
         <img
@@ -56,22 +59,26 @@ function displayHomepage() {
           class="mr-3"
           alt="img"
         />
-        <a href=${response._embedded.event[1].url}>${
+        <a href=${response._embedded.events[1].url}>${
         response._embedded.events[1].name
       }</a>
-      </li>`)
+      </li>
+      <br>`)
     );
-    $(".list-unstyled").append;
-    $(`<li class="media">
+    
+    $(".list-unstyled").append(
+      $(`<li class="media">
         <img
           src=${response._embedded.events[2].images[0].url}
           class="mr-3"
           alt="img"
         />
-        <a href=${
-          response._embedded.events[2].url
-        }>${response._embedded.events[2].name}</a>
-      </li>`);
+        <a href=${response._embedded.events[2].url}>${
+        response._embedded.events[2].name
+      }</a>
+      </li>`)
+    );
+
   });
 }
 
@@ -102,3 +109,5 @@ function napsterMusic() {
 }
 
 napsterMusic();
+
+
