@@ -7,7 +7,7 @@ body {
 }
 
 .btn.btn-light {
-    background-color: purple;
+    background-color: rgb(172, 52, 172);
     color:aliceblue;
 }
 
@@ -23,3 +23,18 @@ body {
 .media-body {
     font-size: 10px;
 }
+
+.media {
+    height: 50px;
+    width:50px;
+}
+
+/* Playlist */
+
+#playlist {
+    background-color: #343a40;
+    font-family: 'Michroma', sans-serif;
+}
+
+
+
