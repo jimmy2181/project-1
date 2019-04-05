@@ -21,7 +21,7 @@ var queryURLTicketEvents =
   "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" +
   APIkeyTicket;
 var queryURLTicketSearch =
-  "https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=" +
+  "https://app.ticketmaster.com/discovery/v2/events.json?size=5&apikey=" +
   APIkeyTicket;
 // Napster API variables
 var APIkeyNapster =
@@ -35,13 +35,7 @@ function displayHomepage() {
     url: queryURLTicketEvents,
     method: "GET"
   }).then(function(response) {
-
-
-    console.log(queryURLTicketEvents);
-    console.log(response._embedded.events);
-
-
-    $(".list-unstyled").append(
+    $("#homepageEvents").append(
       $(`<li class="media">
         <img
           src=${response._embedded.events[0].images[0].url}
@@ -54,8 +48,8 @@ function displayHomepage() {
       </li>
       <br>`)
     );
-    
-    $(".list-unstyled").append(
+
+    $("#homepageEvents").append(
       $(`<li class="media">
         <img
           src=${response._embedded.events[1].images[0].url}
@@ -69,7 +63,7 @@ function displayHomepage() {
       <br>`)
     );
 
-    $(".list-unstyled").append(
+    $("#homepageEvents").append(
       $(`<li class="media">
         <img
           src=${response._embedded.events[2].images[0].url}
@@ -81,7 +75,6 @@ function displayHomepage() {
       }</a>
       </li>`)
     );
-
   });
 }
 
@@ -89,43 +82,95 @@ displayHomepage();
 
 // This is the API call for the searchable data
 function searchResults() {
+  // Grabbing postal code input data here and using submit button click as event listener
   $("#submit").on("click", function(event) {
     event.preventDefault();
     var userInput = $("#zipCode")
       .val()
       .trim();
-
+    //searching the API postal code here
     var searchResults = queryURLTicketSearch + "&postalCode=" + userInput;
+
     $.ajax({
       url: searchResults,
       method: "GET"
     }).then(function(response) {
-      console.log(response._embedded);
+      console.log(response);
 
-      $("").append(
-        `<li class="media">
+      function napsterMusic() {
+        $.ajax({
+          url: queryURLNapster,
+          method: "GET"
+        }).then(function(response) {
+          var musicLink = queryURLNapster + "?";
+        });
+      }
+      if (response.page.totalElements === 0) {
+        alert("Sorry no events in this area");
+      } else {
+        //appending the events page with a list of search results
+        $("#searchResults")
+          .empty()
+          .append(
+            `</br>
+        <li class="media">
         <img
-          src=${}
+          src=${response._embedded.events[0].images[0].url}
           class="mr-3"
           alt="img"
         />
-        <a href=${response.events[0].url}>${response.events[0].name
-      }</a>
+        <a href=${response._embedded.events[0].url}>${
+              response._embedded.events[0].name
+            }</a>
+      </li>
+      </br>
+      <li class="media">
+      <img
+        src=${response._embedded.events[4].images[0].url}
+        class="mr-3"
+        alt="img"
+      />
+      <a href=${response._embedded.events[4].url}>${
+              response._embedded.events[4].name
+            }</a>
+    </li>
+    </br>
+        <li class="media">
+        <img
+          src=${response._embedded.events[1].images[0].url}
+          class="mr-3"
+          alt="img"
+        />
+        <a href=${response._embedded.events[1].url}>${
+              response._embedded.events[1].name
+            }</a>
+      </li>
+      </br>
+        <li class="media">
+        <img
+          src=${response._embedded.events[2].images[0].url}
+          class="mr-3"
+          alt="img"
+        />
+        <a href=${response._embedded.events[2].url}>${
+              response._embedded.events[2].name
+            }</a>
+      </li>
+      </br>
+        <li class="media">
+        <img
+          src=${response._embedded.events[3].images[0].url}
+          class="mr-3"
+          alt="img"
+        />
+        <a href=${response._embedded.events[3].url}>${
+              response._embedded.events[3].name
+            }</a>
       </li>`
-      )
+          );
+      }
     });
   });
 }
 
 searchResults();
-// This is the data for the corresponing music that matches the search results
-function napsterMusic() {
-  $.ajax({
-    url: queryURLNapster,
-    method: "GET"
-  }).then(function(response) {});
-}
-
-napsterMusic();
-
-

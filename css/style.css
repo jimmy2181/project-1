@@ -1,62 +1,64 @@
 body {
-    background-color: rgb(87, 82, 82) !important;
+  background-color: rgb(87, 82, 82) !important;
 }
 
 .navbar {
-    font-family: 'Michroma', sans-serif;
+  font-family: "Michroma", sans-serif;
 }
 
 .btn.btn-light {
-    background-color: rgb(172, 52, 172);
-    color:aliceblue;
+  background-color: rgb(172, 52, 172);
+  color: aliceblue;
 }
 
 .row {
-    font-family: 'Michroma', sans-serif;
+  font-family: "Michroma", sans-serif;
 }
 
 .card-body {
-    background-color: rgb(86, 86, 88);
-    color: aliceblue;
-    font-family: 'Michroma', sans-serif;
+  background-color: rgb(86, 86, 88);
+  color: aliceblue;
+  font-family: "Michroma", sans-serif;
 }
 
 .media-body {
-    font-size: 10px;
+  font-size: 10px;
 }
 
-a:link{
-    color: rgb(202,141,239);
+a:link {
+  color: rgb(202, 141, 239);
 }
 
-a:visited{
-    color: rgb(202,141,239);
+a:visited {
+  color: rgb(202, 141, 239);
 }
 
 .mr-3 {
-    height: 100px;
-    width: 200px;
-    color: purple;
-
+  height: 100px;
+  width: 200px;
+  color: purple;
 }
 
-.list-unstyled {
-    font-family: 'Heebo', sans-serif;
-    text-decoration: underline;
+#homepageEvents {
+  font-family: "Heebo", sans-serif;
+  text-decoration: underline;
 }
 /* Playlist */
 
 #playlist {
-    background-color: #343a40;
-    font-family: 'Michroma', sans-serif;
+  background-color: #343a40;
+  font-family: "Michroma", sans-serif;
 }
 
-#nextSong, #playSong, #lastSong{
-    height: 100px;
-    width: 100px;
+#nextSong,
+#playSong,
+#lastSong {
+  height: 100px;
+  width: 100px;
 }
 
-.fas.fa-step-backward, .fas.fa-step-forward, .fas.fa-play{
-    font-size: 25px;
+.fas.fa-step-backward,
+.fas.fa-step-forward,
+.fas.fa-play {
+  font-size: 25px;
 }
-

@@ -14,7 +14,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+    <title>Event</title>
   </head>
   <body>
     <div class="container">
@@ -39,27 +39,11 @@
               >
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="event.html"
-                >Event <span class="sr-only"></span
-              ></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="playlist.html"
-                >Playlist <span class="sr-only"></span
+              <a class="nav-link" href="https://app.napster.com/"
+                >Stream <span class="sr-only"></span
               ></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="City"
-              aria-label="Search"
-            />
-            <button class="btn btn-light my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </nav>
       <br />
@@ -69,20 +53,21 @@
           <p class="card-text">Find events near you!</p>
           <form class="form-inline my-2 my-lg-0">
             <input
-              class="form-control mr-sm-2"
+              class="form-control mr-sm-2 "
+              id="zipCode"
               type="search"
-              placeholder="Zipcode"
+              placeholder="Postal Code"
               aria-label="Search"
-              id="zipCodeSer"
             />
             <button
               class="btn btn-light my-2 my-sm-0"
-              id="zipCodeSub"
+              id="submit"
               type="submit"
             >
               Search
             </button>
           </form>
+          <ul class="list-unstyled" id="searchResults"></ul>
         </div>
       </div>
     </div>

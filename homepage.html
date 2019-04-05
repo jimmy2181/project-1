@@ -7,7 +7,10 @@
       href="https://fonts.googleapis.com/css?family=Michroma"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Heebo"
+      rel="stylesheet"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link
       rel="stylesheet"
@@ -15,7 +18,9 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+    <title>
+      EarShot
+    </title>
   </head>
   <body>
     <div class="container">
@@ -41,31 +46,10 @@
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="event.html"
-                >Event <span class="sr-only"></span
-              ></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="playlist.html"
-                >Playlist <span class="sr-only"></span
+                >Search Events <span class="sr-only"></span
               ></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input
-              class="form-control mr-sm-2 "
-              id="zipCode"
-              type="search"
-              placeholder="City"
-              aria-label="Search"
-            />
-            <button
-              class="btn btn-light my-2 my-sm-0"
-              id="submit"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
         </div>
       </nav>
       <div
@@ -73,6 +57,10 @@
         class="carousel slide"
         data-ride="carousel"
       >
+        <div class="carousel-caption d-none d-md-block">
+          <h2>Welcome to EarShot</h2>
+          <p>Find the music that's close to you</p>
+        </div>
         <ol class="carousel-indicators">
           <li
             data-target="#carouselExampleIndicators"
@@ -146,9 +134,7 @@
             <div class="card-body">
               <!-- You can edit out -->
 
-              <ul class="list-unstyled"></ul>
-
-              <ul class="list-unstyled"></ul>   
+              <ul class="list-unstyled" id="homepageEvents"></ul>
 
               <!-- You can edit out -->
             </div>
