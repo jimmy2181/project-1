@@ -21,7 +21,7 @@ var queryURLTicketEvents =
   "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" +
   APIkeyTicket;
 var queryURLTicketSearch =
-  "https://app.ticketmaster.com/discovery/v2/classifications.json?apikey=" +
+  "https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=" +
   APIkeyTicket;
 // Napster API variables
 var APIkeyNapster =
@@ -35,8 +35,6 @@ function displayHomepage() {
     url: queryURLTicketEvents,
     method: "GET"
   }).then(function(response) {
-    console.log(queryURLTicketEvents);
-    console.log(response);
     $(".list-unstyled").append(
       $(`<li class="media">
         <img
@@ -61,17 +59,18 @@ function displayHomepage() {
       }</a>
       </li>`)
     );
-    $(".list-unstyled").append;
-    $(`<li class="media">
+    $(".list-unstyled").append(
+      $(`<li class="media">
         <img
           src=${response._embedded.events[2].images[0].url}
           class="mr-3"
           alt="img"
         />
-        <a href=${
-          response._embedded.events[2].url
-        }>${response._embedded.events[2].name}</a>
-      </li>`);
+        <a href=${response._embedded.events[2].url}>${
+        response._embedded.events[2].name
+      }</a>
+      </li>`)
+    );
   });
 }
 
@@ -79,13 +78,31 @@ displayHomepage();
 
 // This is the API call for the searchable data
 function searchResults() {
-  $.ajax({
-    url: queryURLTicketSearch,
-    method: "GET"
-  }).then(function(response) {
-    console.log(queryURLTicketSearch);
-    console.log(response);
-    // Here we grab the text from the input box
+  $("#submit").on("click", function(event) {
+    event.preventDefault();
+    var userInput = $("#zipCode")
+      .val()
+      .trim();
+
+    var searchResults = queryURLTicketSearch + "&postalCode=" + userInput;
+    $.ajax({
+      url: searchResults,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response._embedded);
+
+      $("").append(
+        `<li class="media">
+        <img
+          src=${}
+          class="mr-3"
+          alt="img"
+        />
+        <a href=${response.events[0].url}>${response.events[0].name
+      }</a>
+      </li>`
+      )
+    });
   });
 }
 
@@ -95,10 +112,7 @@ function napsterMusic() {
   $.ajax({
     url: queryURLNapster,
     method: "GET"
-  }).then(function(response) {
-    console.log(queryURLNapster);
-    console.log(response);
-  });
+  }).then(function(response) {});
 }
 
 napsterMusic();
