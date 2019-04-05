@@ -35,6 +35,12 @@ function displayHomepage() {
     url: queryURLTicketEvents,
     method: "GET"
   }).then(function(response) {
+
+
+    console.log(queryURLTicketEvents);
+    console.log(response._embedded.events);
+
+
     $(".list-unstyled").append(
       $(`<li class="media">
         <img
@@ -45,8 +51,10 @@ function displayHomepage() {
         <a href=${response._embedded.events[0].url}>${
         response._embedded.events[0].name
       }</a>
-      </li>`)
+      </li>
+      <br>`)
     );
+    
     $(".list-unstyled").append(
       $(`<li class="media">
         <img
@@ -54,11 +62,13 @@ function displayHomepage() {
           class="mr-3"
           alt="img"
         />
-        <a href=${response._embedded.event[1].url}>${
+        <a href=${response._embedded.events[1].url}>${
         response._embedded.events[1].name
       }</a>
-      </li>`)
+      </li>
+      <br>`)
     );
+
     $(".list-unstyled").append(
       $(`<li class="media">
         <img
@@ -71,6 +81,7 @@ function displayHomepage() {
       }</a>
       </li>`)
     );
+
   });
 }
 
@@ -116,3 +127,5 @@ function napsterMusic() {
 }
 
 napsterMusic();
+
+
