@@ -18,19 +18,32 @@ body {
 .card-body {
     background-color: rgb(86, 86, 88);
     color: aliceblue;
+    font-family: 'Michroma', sans-serif;
 }
 
 .media-body {
     font-size: 10px;
 }
 
+a:link{
+    color: rgb(202,141,239);
+}
+
+a:visited{
+    color: rgb(202,141,239);
+}
+
 .mr-3 {
     height: 100px;
     width: 200px;
+    color: purple;
 
 }
 
-
+.list-unstyled {
+    font-family: 'Heebo', sans-serif;
+    text-decoration: underline;
+}
 /* Playlist */
 
 #playlist {
