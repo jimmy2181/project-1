@@ -38,5 +38,12 @@ body {
     font-family: 'Michroma', sans-serif;
 }
 
+#nextSong, #playSong, #lastSong{
+    height: 100px;
+    width: 100px;
+}
 
+.fas.fa-step-backward, .fas.fa-step-forward, .fas.fa-play{
+    font-size: 25px;
+}
 
