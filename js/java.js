@@ -1,20 +1,3 @@
-// 1. As a user, I want to be able to listen music online.(spotify api)
-// 2. As a user, I want to find events in the area.(streaming ticketvmastervapi).
-// 3. As a user, able to save playlists.
-// 4. As a user able to to save my profile (via firebase).
-// 5. As a user hold data from last searches (firebase).'
-// 6. var APIkey = "3gWNNMOFcqaL6aCBOH6zS6VDBmUwk8ZL";
-
-// window.onload = function() {
-//     $("#start").on("click", startSong );
-//     $("#stop").on("click", stopSong);
-//     $("#fastforward").on("click", fastForward)
-//     $("#rewind").on("click", rewind);
-// }
-
-// earshot logo on video player
-// $("#display").text("<>");
-
 // API responeses for ticketmaster here
 var APIkeyTicket = "CWfDrt0hTbUSexgXRIfEm2GAuiAA2NSv";
 var queryURLTicketEvents =
@@ -26,8 +9,8 @@ var queryURLTicketSearch =
 // Napster API variables
 var APIkeyNapster =
   "YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=5&pretty=true";
-var queryURLNapster =
-  "http://api.napster.com/v2.2/artists/art.978?apikey=" + APIkeyNapster;
+var queryURLNapster;
+"http://api.napster.com/v2.2/search/verbose?apikey=" + APIkeyNapster;
 
 // this is the function used to display the data for the cards on the homepage
 function displayHomepage() {
@@ -98,14 +81,20 @@ function searchResults() {
       console.log(response);
 
       function napsterMusic() {
+        var musicLink =
+          queryURLNapster + "?query=" + response._embedded.events[0].name;
+
         $.ajax({
-          url: queryURLNapster,
+          url: musicLink,
           method: "GET"
-        }).then(function(response) {
-          var musicLink = queryURLNapster + "?";
+        }).then(function(responseNap) {
+          console.log(musicLink);
         });
       }
+      napsterMusic();
+      // if else statement that takes into account if the user search an area with no events or if their search is invalid
       if (response.page.totalElements === 0) {
+        $("#searchResults").empty();
         alert("Sorry no events in this area");
       } else {
         //appending the events page with a list of search results
