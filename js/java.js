@@ -1,3 +1,18 @@
+// API responeses for ticketmaster here
+var APIkeyTicket = "CWfDrt0hTbUSexgXRIfEm2GAuiAA2NSv";
+var queryURLTicketEvents =
+  "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" +
+  APIkeyTicket;
+var queryURLTicketSearch =
+  "https://app.ticketmaster.com/discovery/v2/events.json?size=5&apikey=" +
+    APIkeyTicket;
+
+// Napster API variables
+var APIkeyNapster =
+  "YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=5&pretty=true";
+var queryURLNapster;
+"http://api.napster.com/v2.2/search/verbose?apikey=" + APIkeyNapster;
+
 var config = {
   apiKey: "AIzaSyC50MhEjd06OfBG2iZ_CQd0_mQwUCXwCrQ",
   authDomain: "project1-e7dbf.firebaseapp.com",
@@ -19,52 +34,37 @@ var zipcode = "";
 
 $("#add-user").on("click", function(event) {
   event.preventDefault();
-});
-
-// Capturing values for input fields
-
-name = $("#name-input")
-  .val()
-  .trim();
-email = $("#email-input")
-  .val()
-  .trim();
-zipcode = $("#zipcode-input")
-  .val()
-  .trim();
-
-database.ref().set({
-  name,
-  email,
-  zipcode
+  
+  // Capturing values for input fields
+  
+  name = $("#name-input")
+    .val()
+    .trim();
+  email = $("#email-input")
+    .val()
+    .trim();
+  zipcode = $("#zipcode-input")
+    .val()
+    .trim();
+  
+  database.ref().set({
+    name,
+    email,
+    zipcode
+  });
 });
 
 // Print the initial data to the console
 
 database.ref().on("value", function(snapshot) {
-  console.log(snapshot.val());
+  // console.log(snapshot.val());
+  
+  // // Print the other values
+  
+  // console.log(snapshot.val().name);
+  // console.log(snapshot.val().email);
+  // console.log(snapshot.val().zipcode);
 });
-
-// Print the other values
-
-console.log(snapshot.val().name);
-console.log(snapshot.val().email);
-console.log(snapshot.val().zipcode);
-
-// API responeses for ticketmaster here
-var APIkeyTicket = "CWfDrt0hTbUSexgXRIfEm2GAuiAA2NSv";
-var queryURLTicketEvents =
-  "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" +
-  APIkeyTicket;
-var queryURLTicketSearch =
-  "https://app.ticketmaster.com/discovery/v2/events.json?size=5&apikey=" +
-    APIkeyTicket || snapshot.val().zipcode;
-
-// Napster API variables
-var APIkeyNapster =
-  "YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=5&pretty=true";
-var queryURLNapster;
-"http://api.napster.com/v2.2/search/verbose?apikey=" + APIkeyNapster;
 
 // this is the function used to display the data for the cards on the homepage
 
@@ -124,43 +124,43 @@ function searchResults() {
   // Grabbing postal code input data here and using submit button click as event listener
   $("#submit").on("click", function(event) {
     event.preventDefault();
+
     var userInput = $("#zipCode")
       .val()
       .trim();
 
     //searching the API postal code here
-    var searchResults = queryURLTicketSearch + "&postalCode=" + userInput;
+    var searchURL = queryURLTicketSearch + "&postalCode=" + userInput;
 
     $.ajax({
-      url: searchResults,
+      url: searchURL,
       method: "GET"
     }).then(function(response) {
-      console.log(response);
+      // function napsterMusic() {
+      //   var musicLink =
+      //     queryURLNapster + "?query=" + response._embedded.events[0].name;
 
-      function napsterMusic() {
-        var musicLink =
-          queryURLNapster + "?query=" + response._embedded.events[0].name;
+      //   // this is the api call for napster
+      //   //(that we dont actually use because they dont provide
+      //   //the music data we anticipated
+      //   //the goal was to have playable music on the page
+      //   //but none of the music apis we tried provide that data
+      //   //in a way thats accessable for us)
 
-        // this is the api call for napster
-        //(that we dont actually use because they dont provide
-        //the music data we anticipated
-        //the goal was to have playable music on the page
-        //but none of the music apis we tried provide that data
-        //in a way thats accessable for us)
+      //   $.ajax({
+      //     url: musicLink,
+      //     method: "GET"
+      //   }).then(function(responseNap) {
+      //     console.log('Music link', musicLink);
+      //   });
+      // }
 
-        $.ajax({
-          url: musicLink,
-          method: "GET"
-        }).then(function(responseNap) {
-          console.log(musicLink);
-        });
-      }
-      napsterMusic();
+      // napsterMusic();
 
       // if else statement that takes into account if the user search an area with no events or if their search is invalid
       if (response.page.totalElements === 0) {
         $("#searchResults").empty();
-        alert("Sorry no events in this area");
+        $("#searchResults").append($("<p>").text("Sorry no events in this area"))
       } else {
         //appending the events page with a list of search results
 
